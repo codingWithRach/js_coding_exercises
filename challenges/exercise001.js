@@ -37,8 +37,10 @@ function reverseWord(word) {
 }
 
 function reverseAllWords(words) {
-  if (words === undefined) throw new Error("words is required");
-  // Add your code here!
+  for (let index = 0; index < words.length; ++index) {
+    words[index] = reverseWord(words[index]);
+  }
+  return words;
 }
 
 function countLinuxUsers(users) {

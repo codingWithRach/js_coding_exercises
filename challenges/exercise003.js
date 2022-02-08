@@ -8,7 +8,7 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  var camel = ""
+  var camel = "";
   for (let index = 0; index < words.length; ++index) {
     if (index === 0) camel += words[index];
     else camel += words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
@@ -18,7 +18,11 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your co
+  var numSubjects = 0;
+  for (let index = 0; index < people.length; ++index) {
+    numSubjects += people[index].subjects.length;
+  }
+  return numSubjects;
 }
 
 function checkIngredients(menu, ingredient) {

@@ -54,12 +54,17 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  var sum = scores.reduce((a, b) => a + b, 0);
+  return +(sum/scores.length).toFixed(2);
 }
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // Add your code here!
+  var result = "";
+  if (n % 3 == 0) result += "fizz";
+  if (n % 5 == 0) result += "buzz";
+  if (result == "") return n;
+  return result;
 }
 
 module.exports = {

@@ -15,12 +15,14 @@ function getBusNumbers(people) {
 
 function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
-  return arr.filter(x => x=="sheep").length;
+  // Format Document removed spaces surrounding ==
+  return arr.filter(x => x == "sheep").length;
 }
 
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
-  return person.address.postCode.substring(0,1) === "M" && person.address.city === "Manchester";
+  // Format Document added space in substring method
+  return person.address.postCode.substring(0, 1) === "M" && person.address.city === "Manchester";
 }
 
 module.exports = {

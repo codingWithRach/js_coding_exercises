@@ -1,16 +1,24 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  // Your code here!
+  for (let index = 0; index < nums.length; ++index) {
+    nums[index] = nums[index] ** 2;
+  }
+  return nums;
 }
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+  var camel = ""
+  for (let index = 0; index < words.length; ++index) {
+    if (index === 0) camel += words[index];
+    else camel += words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
+  }
+  return camel;
 }
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+  // Your co
 }
 
 function checkIngredients(menu, ingredient) {

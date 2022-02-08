@@ -45,7 +45,11 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  var numUsers = 0;
+  users.forEach(user => {
+    if (user.type == "Linux") ++numUsers;
+  });
+  return numUsers;
 }
 
 function getMeanScore(scores) {

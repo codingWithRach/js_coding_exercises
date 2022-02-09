@@ -1,7 +1,7 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
   for (let index = 0; index < nums.length; ++index) {
-    nums[index] = nums[index] ** 2;
+    nums[index] = Math.pow(nums[index], 2);
   }
   return nums;
 }
@@ -28,7 +28,10 @@ function getTotalSubjects(people) {
 function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+  for (let index = 0; index < menu.length; ++index) {
+    if (menu[index].ingredients.includes(ingredient)) return true;
+  }
+  return false;
 }
 
 function duplicateNumbers(arr1, arr2) {

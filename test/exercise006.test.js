@@ -1,18 +1,15 @@
 const {
-  sumMultiples,
-  isValidDNA,
-  getComplementaryDNA,
-  isItPrime,
-  createMatrix,
-  areWeCovered
+  sumMultiples
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
-  test("returns the next number after the given number in the array", () => {
-    expect(sumMultiples([5, 3, 7, 8, 1, 10], 7)).toBe(8);
+  test("returns the sum of any numbers which are multiples of 3 or 5", () => {
+    expect(sumMultiples([1, 5, 7, 3, 15])).toEqual(23);
+    expect(sumMultiples([-1, -5, -7, -3, -15])).toEqual(-23);
+    expect(sumMultiples([3])).toEqual(3);
   });
 
-  test("if the number is not found in the array, returns null", () => {
-    expect(sumMultiples([5, 3, 7, 8, 1, 10], 55)).toBe(null);
+  test("if there are no numbers that are multiples of 3 or 5, returns 0", () => {
+    expect(sumMultiples([1, -2, 7, 8, 1, 13])).toEqual(0);
   });
 });

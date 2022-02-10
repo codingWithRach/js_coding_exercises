@@ -33,6 +33,8 @@ const arrShift = arr => {
   return result;
 };
 
+// test comment for test commit 
+
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");

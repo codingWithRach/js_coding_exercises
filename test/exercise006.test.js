@@ -1,6 +1,8 @@
 const {
   sumMultiples,
-  isValidDNA
+  isValidDNA,
+  getComplementaryDNA,
+  isItPrime
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
@@ -33,3 +35,44 @@ describe("isValidDNA", () => {
     expect(isValidDNA("12345")).toEqual(false);
   });
 });
+
+describe("getComplementaryDNA", () => {
+  test("returns complementary sequence if valid sequence passed", () => {
+    expect(getComplementaryDNA("GGCTCAGTT")).toEqual("CCGAGTCAA");
+    expect(getComplementaryDNA("T")).toEqual("A");
+  });
+
+  test("handles an invalid sequence appropriately", () => {
+    expect(getComplementaryDNA("GGCRTCAGTT")).toEqual("Invalid DNA");
+    expect(getComplementaryDNA("3")).toEqual("Invalid DNA");
+  });
+});
+
+describe("isItPrime", () => {
+  test("returns true for prime numbers", () => {
+    expect(isItPrime(7)).toEqual(true);
+    expect(isItPrime(7919)).toEqual(true);
+  });
+
+  test("returns false for non-prime numbers", () => {
+    expect(isItPrime(6)).toEqual(false);
+    expect(isItPrime(1761)).toEqual(false);
+  });
+
+  test("returns false for negative numbers", () => {
+    expect(isItPrime(-5)).toEqual(false);
+    expect(isItPrime(-8)).toEqual(false);
+  });
+
+  test("returns false for non-integers", () => {
+    expect(isItPrime(3.2)).toEqual(false);
+    expect(isItPrime("6")).toEqual(false);
+  });
+});
+
+// STRUCTURE
+//describe("FUNCTION NAME HERE", () => {
+//  test("TEST DESC HERE", () => {
+//    expect(getComplementaryDNA("PARAM HERE")).toEqual("RESULT HERE");
+//  });
+//});

@@ -22,8 +22,8 @@ const sumMultiples = arr => {
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
   const letters = str.toString().split('');
-  for (let index=0; index < letters.length; index++) {
-    if (!("CGTA".includes(letters[index].toUpperCase()))) return false;
+  for (let index = 0; index < letters.length; index++) {
+    if (!"CGTA".includes(letters[index].toUpperCase())) return false;
   }
   return true; // no invalid characters found
 };
@@ -36,6 +36,13 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isValidDNA(str)) return "Invalid DNA";
+  const compDNA = { T: 'A', A: 'T', C: 'G', G: 'C'}
+  const letters = str.toString().split('');
+  const result = letters.map(function(item) {
+    return compDNA[item.toUpperCase()];
+  }); 
+  return result.join('');
 };
 
 /**
@@ -45,6 +52,15 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+
+  // if not a positive integer, not prime
+  if (n < 0 || !Number.isInteger(n)) return false;
+
+  // divide n by every number greater than 1 (up to the max possible divisor, which is the square root of n); if a divisor is found, number is not prime
+  for(let index = 2; index <= Math.sqrt(n); index++) {
+    if(n % index === 0) return false;
+  }
+  return true; // no divisors found
 };
 
 /**

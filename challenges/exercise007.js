@@ -2,7 +2,7 @@
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
  */
-const sumDigits = n => {
+const sumDigits = (n) => {
   // validate parameters
   if (n === undefined) throw new Error("n is required");
   if (!Number.isInteger(n)) return NaN;
@@ -25,7 +25,7 @@ const sumDigits = n => {
 };
 
 /**
- * This function creates a range of numbers as an array. It received a start, an end and a step. Step is the gap between numbers in the range. 
+ * This function creates a range of numbers as an array. It received a start, an end and a step. Step is the gap between numbers in the range.
  * For example, if start = 3, end = 11 and step = 2 the resulting range would be: [3, 5, 7, 9, 11]
  * Both the start and the end numbers are inclusive.
  * Step is an optional parameter. If it is not provided, assume the step is 1.
@@ -48,13 +48,9 @@ const createRange = (start, end, step) => {
   // populate array if step is negative or positive
   var result = [];
   if (step < 0) {
-    for (let i = start; i >= end; i += step) {
-      result.push(i);
-    }
+    for (let i = start; i >= end; i += step) result.push(i);
   } else {
-    for (let i = start; i <= end; i += step) {
-      result.push(i);
-    }
+    for (let i = start; i <= end; i += step) result.push(i);
   }
   return result;
 };
@@ -85,12 +81,26 @@ const createRange = (start, end, step) => {
  *
  * The function should return an array of usernames of users who have used more than 100 minutes of screentime for a given date.
  * The date will be provided in the format "2019-05-04" (YYYY-MM-DD)
- * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100 minutes of screentime on that date.
+ * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100
+ * minutes of screentime on that date.
  * @param {Array} users
  */
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+
+  const userNames = [];
+  users.forEach((user) => {
+    const userScreenTime = user.screenTime.filter((item) => item.date === date);
+    if (userScreenTime.length > 0) {
+      let totalUsage = 0;
+      for (let key in userScreenTime[0].usage)
+        totalUsage += userScreenTime[0].usage[key];
+      if (totalUsage > 100 && !userNames.includes(user.username))
+        userNames.push(user.username);
+    }
+  });
+  return userNames;
 };
 
 /**
@@ -103,7 +113,7 @@ const getScreentimeAlertList = (users, date) => {
  * Hint: You will need to convert each hexadecimal value for R, G and B into its decimal equivalent!
  * @param {String} str
  */
-const hexToRGB = hexStr => {
+const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
 };
 
@@ -117,7 +127,7 @@ const hexToRGB = hexStr => {
  * The function should return "X" if player X has won, "0" if the player 0 has won, and null if there is currently no winner.
  * @param {Array} board
  */
-const findWinner = board => {
+const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
 };
 
@@ -126,5 +136,5 @@ module.exports = {
   createRange,
   getScreentimeAlertList,
   hexToRGB,
-  findWinner
+  findWinner,
 };

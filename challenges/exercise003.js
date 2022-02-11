@@ -8,17 +8,19 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  var camel = "";
+  let camel = "";
   for (let index = 0; index < words.length; ++index) {
     if (index === 0) camel += words[index];
-    else camel += words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
+    else
+      camel +=
+        words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
   }
   return camel;
 }
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  var numSubjects = 0;
+  let numSubjects = 0;
   for (let index = 0; index < people.length; ++index) {
     numSubjects += people[index].subjects.length;
   }
@@ -37,9 +39,10 @@ function checkIngredients(menu, ingredient) {
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  var result = [];
+  const result = [];
   for (let index = 0; index < arr1.length; ++index) {
-    if (arr2.includes(arr1[index]) && !result.includes(arr1[index])) result.push(arr1[index]);
+    if (arr2.includes(arr1[index]) && !result.includes(arr1[index]))
+      result.push(arr1[index]);
   }
   return result.sort();
 }
@@ -49,5 +52,5 @@ module.exports = {
   camelCaseWords,
   getTotalSubjects,
   checkIngredients,
-  duplicateNumbers
+  duplicateNumbers,
 };

@@ -2,6 +2,7 @@ const {
   sumDigits,
   createRange,
   getScreentimeAlertList,
+  hexToRGB,
 } = require("../challenges/exercise007");
 
 describe("sumDigits", () => {
@@ -127,6 +128,19 @@ describe("getScreentimeAlertList", () => {
   });
   test("returns empty array when date passed that does not exist in any users object", () => {
     expect(getScreentimeAlertList(users, "2015-05-01")).toEqual([]);
+  });
+});
+
+describe("hexToRGB", () => {
+  test("returns correct rgb for a valid hexadecimal colour code", () => {
+    expect(hexToRGB("#FF1133")).toEqual("rgb(255,17,51)");
+  });
+
+  test("returns empty string for an invalid hexadecimal colour code", () => {
+    expect(hexToRGB("FF1133")).toEqual("");
+    expect(hexToRGB("#F1133")).toEqual("");
+    expect(hexToRGB("#ZZ1133")).toEqual("");
+    expect(hexToRGB("#ZZFF1133")).toEqual("");
   });
 });
 

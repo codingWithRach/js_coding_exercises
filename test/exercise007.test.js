@@ -3,6 +3,7 @@ const {
   createRange,
   getScreentimeAlertList,
   hexToRGB,
+  findWinner,
 } = require("../challenges/exercise007");
 
 describe("sumDigits", () => {
@@ -144,9 +145,140 @@ describe("hexToRGB", () => {
   });
 });
 
-//STRUCTURE
-//describe("NAME OF FUNCTION", () => {
-//    test("DESCRIPTION OF TEST", () => {
-//        expect(FUNCTIONCALL(PARAMETERS)).toEqual(EXPECTED);
-//    });
-//});
+describe("findWinner", () => {
+  const boardX1 = [
+    ["X", "0", null],
+    ["X", null, "0"],
+    ["X", null, "0"],
+  ];
+  const boardX2 = [
+    ["0", "X", null],
+    [null, "X", "0"],
+    [null, "X", "0"],
+  ];
+  const boardX3 = [
+    ["0", null, "X"],
+    [null, "0", "X"],
+    [null, "0", "X"],
+  ];
+  const boardX4 = [
+    ["X", "X", "X"],
+    ["0", null, "0"],
+    [null, null, "0"],
+  ];
+  const boardX5 = [
+    ["0", null, "0"],
+    ["X", "X", "X"],
+    [null, null, "0"],
+  ];
+  const boardX6 = [
+    ["0", null, "0"],
+    [null, null, "0"],
+    ["X", "X", "X"],
+  ];
+  const boardX7 = [
+    ["X", "0", null],
+    [null, "X", "0"],
+    ["0", null, "X"],
+  ];
+  const boardX8 = [
+    [null, "0", "X"],
+    [null, "X", "0"],
+    ["X", null, "0"],
+  ];
+
+  test("returns X if player has won", () => {
+    expect(findWinner(boardX1)).toEqual("X");
+    expect(findWinner(boardX2)).toEqual("X");
+    expect(findWinner(boardX3)).toEqual("X");
+    expect(findWinner(boardX4)).toEqual("X");
+    expect(findWinner(boardX5)).toEqual("X");
+    expect(findWinner(boardX6)).toEqual("X");
+    expect(findWinner(boardX7)).toEqual("X");
+    expect(findWinner(boardX8)).toEqual("X");
+  });
+
+  const board01 = [
+    ["0", "X", null],
+    ["0", null, "X"],
+    ["0", null, "X"],
+  ];
+  const board02 = [
+    ["X", "0", null],
+    [null, "0", "X"],
+    [null, "0", "X"],
+  ];
+  const board03 = [
+    ["X", null, "0"],
+    [null, "X", "0"],
+    [null, "X", "0"],
+  ];
+  const board04 = [
+    ["0", "0", "0"],
+    ["X", null, "X"],
+    [null, null, "X"],
+  ];
+  const board05 = [
+    ["X", null, "X"],
+    ["0", "0", "0"],
+    [null, null, "X"],
+  ];
+  const board06 = [
+    ["X", null, "X"],
+    [null, null, "X"],
+    ["0", "0", "0"],
+  ];
+  const board07 = [
+    ["0", "X", null],
+    [null, "0", "X"],
+    ["X", null, "0"],
+  ];
+  const board08 = [
+    [null, "X", "0"],
+    [null, "0", "X"],
+    ["0", null, "X"],
+  ];
+
+  test("returns 0 if player has won", () => {
+    expect(findWinner(board01)).toEqual("0");
+    expect(findWinner(board02)).toEqual("0");
+    expect(findWinner(board03)).toEqual("0");
+    expect(findWinner(board04)).toEqual("0");
+    expect(findWinner(board05)).toEqual("0");
+    expect(findWinner(board06)).toEqual("0");
+    expect(findWinner(board07)).toEqual("0");
+    expect(findWinner(board08)).toEqual("0");
+  });
+
+  const board = [
+    [null, "X", "0"],
+    [null, "X", "0"],
+    ["0", null, "X"],
+  ];
+
+  // could possibly add a few more tests here
+  test("returns null if neither player has won", () => {
+    expect(findWinner(board)).toEqual(null);
+  });
+
+  const boardWrong1 = [
+    [null, "X", "0"],
+    ["0", null, "X"],
+  ];
+  const boardWrong2 = [
+    [null, "X", "0"],
+    [null, "X"],
+    ["0", null, "X"],
+  ];
+  const boardWrong3 = [
+    [null, "***", "0"],
+    [null, "X"],
+    ["0", null, "X"],
+  ];
+  // could possibly add a few more tests here
+  test("returns null if board has invalid format", () => {
+    expect(findWinner(boardWrong1)).toEqual(null);
+    expect(findWinner(boardWrong2)).toEqual(null);
+    expect(findWinner(boardWrong3)).toEqual(null);
+  });
+});

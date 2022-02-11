@@ -156,6 +156,46 @@ const hexToRGB = (hexStr) => {
  */
 const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
+
+  // validate board has correct format
+  if (!board.length === 3) return null;
+  if (!(board.filter((row) => row.length === 3).length === 3)) return null;
+
+  // check each character is a valid hexadecimal character
+  board.forEach((row) => {
+    row.forEach((square) => {
+      if (!(square === "X" || square === "0" || square === null)) return null;
+    });
+  });
+
+  // create transposed board i.e. swap rows and columns
+  const transpose = (board) =>
+    board[0].map((col, i) => board.map((row) => row[i]));
+  const boards = [board, transpose(board)];
+
+  const players = ["X", "0"];
+  let winner = null;
+  players.forEach((player) => {
+    // check rows in original and tranposed boards
+    boards.forEach((board) => {
+      // check rows
+      board.forEach((row) => {
+        if (row.filter((square) => square === player).length === 3)
+          winner = player;
+      });
+    });
+
+    // check diagonals
+    if (board[1][1] == player) {
+      if (
+        (board[0][0] === player && board[2][2] === player) ||
+        (board[0][2] === player && board[2][0] === player)
+      )
+        winner = player;
+    }
+  });
+
+  return winner;
 };
 
 module.exports = {

@@ -109,6 +109,13 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  var numStaff = 0;
+  staff.forEach(function (person) {
+    // finally worked out how to use map with ES6 arrow notation!
+    const personRota = person.rota.map(item => item.toLowerCase());
+    if (personRota.includes(day.toLowerCase())) numStaff += 1;
+  });
+  return numStaff > 2;
 };
 
 module.exports = {

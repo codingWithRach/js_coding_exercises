@@ -8,14 +8,14 @@ const sumDigits = (n) => {
   if (!Number.isInteger(n)) return NaN;
 
   // determine whether number is positive or negative
-  var multiplier = 1;
+  let multiplier = 1;
   if (n < 0) multiplier = -1;
 
   // convert number to positive and sum the digits
   n = Math.abs(n);
-  var total = 0;
+  let total = 0;
   while (n > 0) {
-    var digit = n % 10;
+    const digit = n % 10;
     total += digit;
     n = (n - digit) / 10;
   }
@@ -46,7 +46,7 @@ const createRange = (start, end, step) => {
   if (start > end && step > 0) return [];
 
   // populate array if step is negative or positive
-  var result = [];
+  const result = [];
   if (step < 0) {
     for (let i = start; i >= end; i += step) result.push(i);
   } else {

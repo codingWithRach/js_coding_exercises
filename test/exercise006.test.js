@@ -3,7 +3,9 @@ const {
   isValidDNA,
   getComplementaryDNA,
   isItPrime,
-  createMatrix
+  createArray,
+  createMatrix,
+  areWeCovered
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
@@ -71,6 +73,22 @@ describe("isItPrime", () => {
   });
 });
 
+describe("createArray", () => {
+  test("returns the expected array when valid parameters passed", () => {
+    expect(createArray(3, "foo")).toEqual(["foo", "foo", "foo"]);
+  });
+
+  test("returns an empty array when fill is a zero-length string", () => {
+    expect(createArray(2, "")).toEqual(["", ""]);
+  });
+
+  test("returns an empty array when n is not a positive integer", () => {
+    expect(createArray(-1, "bar")).toEqual([]);
+    expect(createArray(0, "bar")).toEqual([]);
+    expect(createArray(4.6, "bar")).toEqual([]);
+  });
+});
+
 describe("createMatrix", () => {
   test("returns the expected matrix when valid parameters passed", () => {
     expect(createMatrix(3, "foo")).toEqual([
@@ -94,9 +112,25 @@ describe("createMatrix", () => {
   });
 });
 
-// STRUCTURE
-//describe("FUNCTION NAME HERE", () => {
-//  test("TEST DESC HERE", () => {
-//    expect(getComplementaryDNA("PARAM HERE")).toEqual("RESULT HERE");
-//  });
-//});
+describe("areWeCovered", () => {
+  const staff = [
+    { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+    { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+    { name: "Rachel", rota: [] },
+    { name: "John", rota: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
+    { name: "Matt", rota: ["wednesday", "thursday", "FRIDAY"] }
+  ]
+
+  test("returns true if there are enough staff", () => {
+    expect(areWeCovered(staff, "Tuesday")).toEqual(true);
+  });
+
+  test("is not case sensitive", () => {
+    expect(areWeCovered(staff, "Wednesday")).toEqual(true);
+    expect(areWeCovered(staff, "friday")).toEqual(true);
+  });
+
+  test("returns false if there are not enough staff", () => {
+    expect(areWeCovered(staff, "Monday")).toEqual(false);
+  });
+});

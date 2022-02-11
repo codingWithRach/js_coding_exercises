@@ -64,14 +64,11 @@ const isItPrime = n => {
 };
 
 /**
- * This function should receive a number and return an array of n arrays, each filled with n items. 
- * The parameter "fill" should be used as the filler of the arrays. For example, given parameters 3 
- * and "foo" the resulting matrix should be:
- * [
- *   ["foo", "foo", "foo"],
- *   ["foo", "foo", "foo"],
- *   ["foo", "foo", "foo"]
- * ]
+ * This function should receive a number and return an array filled with n items. 
+ * The parameter "fill" should be used as the filler of the array. For example, given parameters 3 
+ * and "foo" the resulting array should be:
+ * ["foo", "foo", "foo"]
+ * 
  * @param {Number} n
  * @param {Any} fill
  * @returns {Array}
@@ -87,6 +84,19 @@ const createArray = (n, fill) => {
   return result;
 };
 
+/**
+ * This function should receive a number and return an array of n arrays, each filled with n items. 
+ * The parameter "fill" should be used as the filler of the arrays. For example, given parameters 3 
+ * and "foo" the resulting matrix should be:
+ * [
+ *   ["foo", "foo", "foo"],
+ *   ["foo", "foo", "foo"],
+ *   ["foo", "foo", "foo"]
+ * ]
+ * @param {Number} n
+ * @param {Any} fill
+ * @returns {Array}
+ */
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
@@ -123,6 +133,7 @@ module.exports = {
   isValidDNA,
   getComplementaryDNA,
   isItPrime,
+  createArray,
   createMatrix,
   areWeCovered
 };

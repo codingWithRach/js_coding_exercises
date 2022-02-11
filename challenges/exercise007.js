@@ -3,7 +3,25 @@
  * @param {Number} n
  */
 const sumDigits = n => {
+  // validate parameters
   if (n === undefined) throw new Error("n is required");
+  if (!Number.isInteger(n)) return NaN;
+
+  // determine whether number is positive or negative
+  var multiplier = 1;
+  if (n < 0) multiplier = -1;
+
+  // convert number to positive and sum the digits
+  n = Math.abs(n);
+  var total = 0;
+  while (n > 0) {
+    var digit = n % 10;
+    total += digit;
+    n = (n - digit) / 10;
+  }
+
+  // return the total as a positive or negative number
+  return total * multiplier;
 };
 
 /**

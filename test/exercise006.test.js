@@ -2,7 +2,8 @@ const {
   sumMultiples,
   isValidDNA,
   getComplementaryDNA,
-  isItPrime
+  isItPrime,
+  createMatrix
 } = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
@@ -67,6 +68,29 @@ describe("isItPrime", () => {
   test("returns false for non-integers", () => {
     expect(isItPrime(3.2)).toEqual(false);
     expect(isItPrime("6")).toEqual(false);
+  });
+});
+
+describe("createMatrix", () => {
+  test("returns the expected matrix when valid parameters passed", () => {
+    expect(createMatrix(3, "foo")).toEqual([
+      ["foo", "foo", "foo"],
+      ["foo", "foo", "foo"],
+      ["foo", "foo", "foo"]
+    ]);
+  });
+
+  test("returns an empty matrix when fill is a zero-length string", () => {
+    expect(createMatrix(2, "")).toEqual([
+      ["", ""],
+      ["", ""]
+    ]);
+  });
+
+  test("returns an empty array when n is not a positive integer", () => {
+    expect(createMatrix(-1, "bar")).toEqual([]);
+    expect(createMatrix(0, "bar")).toEqual([]);
+    expect(createMatrix(4.6, "bar")).toEqual([]);
   });
 });
 

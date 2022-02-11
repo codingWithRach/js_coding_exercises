@@ -21,9 +21,9 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  const letters = str.toString().split('');
-  for (let index = 0; index < letters.length; index++) {
-    if (!"CGTA".includes(letters[index].toUpperCase())) return false;
+  // use ... notation instead of split
+  for (let index = 0; index < [...str].length; index++) {
+    if (!"CGTA".includes([...str][index].toUpperCase())) return false;
   }
   return true; // no invalid characters found
 };
@@ -37,11 +37,11 @@ const isValidDNA = str => {
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
   if (!isValidDNA(str)) return "Invalid DNA";
-  const compDNA = { T: 'A', A: 'T', C: 'G', G: 'C'}
-  const letters = str.toString().split('');
-  const result = letters.map(function(item) {
+  const compDNA = { T: 'A', A: 'T', C: 'G', G: 'C' }
+  // use ... notation instead of split
+  const result = [...str].map(function (item) {
     return compDNA[item.toUpperCase()];
-  }); 
+  });
   return result.join('');
 };
 
@@ -57,14 +57,16 @@ const isItPrime = n => {
   if (n < 0 || !Number.isInteger(n)) return false;
 
   // divide n by every number greater than 1 (up to the max possible divisor, which is the square root of n); if a divisor is found, number is not prime
-  for(let index = 2; index <= Math.sqrt(n); index++) {
-    if(n % index === 0) return false;
+  for (let index = 2; index <= Math.sqrt(n); index++) {
+    if (n % index === 0) return false;
   }
   return true; // no divisors found
 };
 
 /**
- * This function should receive a number and return an array of n arrays, each filled with n items. The parameter "fill" should be used as the filler of the arrays. For example, given parameters 3 and "foo" the resulting matrix should be:
+ * This function should receive a number and return an array of n arrays, each filled with n items. 
+ * The parameter "fill" should be used as the filler of the arrays. For example, given parameters 3 
+ * and "foo" the resulting matrix should be:
  * [
  *   ["foo", "foo", "foo"],
  *   ["foo", "foo", "foo"],
@@ -74,9 +76,22 @@ const isItPrime = n => {
  * @param {Any} fill
  * @returns {Array}
  */
+const createArray = (n, fill) => {
+  if (n === undefined) throw new Error("n is required");
+  if (fill === undefined) throw new Error("fill is required");
+  if (!Number.isInteger(n)) return [];
+  const result = [];
+  for (let index = 0; index < n; index++) {
+    result.push(fill);
+  }
+  return result;
+};
+
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  if (!Number.isInteger(n)) return [];
+  return createArray(n, createArray(n, fill));
 };
 
 /**

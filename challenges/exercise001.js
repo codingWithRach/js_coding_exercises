@@ -30,11 +30,11 @@ function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
   // if the length of the string is even return the 2 middle characters
   if (str.length % 2 == 0)
-  // Format Document added spaces around the division signs
+    // Format Document added spaces around the division signs
     return str.substring(str.length / 2 - 1, str.length / 2 + 1);
   // otherwise return the middle character
   // Format Document added spaces around the minus sign
-  return str.substring(((str.length + 1) / 2) - 1, ((str.length + 1) / 2));
+  return str.substring((str.length + 1) / 2 - 1, (str.length + 1) / 2);
 }
 
 function reverseWord(word) {
@@ -51,26 +51,26 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  var numUsers = 0;
-  users.forEach(user => {
-    if (user.type == "Linux") ++numUsers;
+  let numUsers = 0;
+  users.forEach((user) => {
+    if (user.type === "Linux") ++numUsers;
   });
   return numUsers;
 }
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  var sum = scores.reduce((a, b) => a + b, 0);
+  const sum = scores.reduce((a, b) => a + b, 0);
   // Format Document added spaces around the division sign
   return +(sum / scores.length).toFixed(2);
 }
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  var result = "";
-  if (n % 3 == 0) result += "fizz";
-  if (n % 5 == 0) result += "buzz";
-  if (result == "") return n;
+  let result = "";
+  if (n % 3 === 0) result += "fizz";
+  if (n % 5 === 0) result += "buzz";
+  if (result === "") return n;
   return result;
 }
 
@@ -84,5 +84,5 @@ module.exports = {
   reverseAllWords,
   countLinuxUsers,
   getMeanScore,
-  simpleFizzBuzz
+  simpleFizzBuzz,
 };

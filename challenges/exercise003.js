@@ -10,10 +10,12 @@ function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   let camel = "";
   for (let index = 0; index < words.length; ++index) {
-    if (index === 0) camel += words[index];
-    else
-      camel +=
-        words[index].substring(0, 1).toUpperCase() + words[index].substring(1);
+    // replace if / else with ternary operator
+    index === 0
+      ? (camel += words[index])
+      : (camel +=
+          words[index].substring(0, 1).toUpperCase() +
+          words[index].substring(1));
   }
   return camel;
 }

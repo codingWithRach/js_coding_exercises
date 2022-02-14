@@ -7,8 +7,8 @@ function findSmallNums(nums) {
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // using filter with arrow notation
-  return names.filter((item) => item.substring(0, 1) === char);
+  // using filter with arrow notation, and replace substring by startsWith
+  return names.filter((item) => item.startsWith(char));
 }
 
 function findVerbs(words) {

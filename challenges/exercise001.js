@@ -1,12 +1,14 @@
 function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
-  return word.substring(0, 1).toUpperCase() + word.substring(1);
+  // replace substring by charAt for single letter
+  return word.charAt(0).toUpperCase() + word.substring(1);
 }
 
 function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
-  return firstName.substring(0, 1) + "." + lastName.substring(0, 1);
+  // replace substring by charAt for single letter
+  return firstName.charAt(0) + "." + lastName.charAt(0);
 }
 
 function addVAT(originalPrice, vatRate) {
@@ -24,11 +26,10 @@ function getSalePrice(originalPrice, reduction) {
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  // if the length of the string is even return the 2 middle characters
-  if (str.length % 2 == 0)
-    return str.substring(str.length / 2 - 1, str.length / 2 + 1);
-  // otherwise return the middle character
-  return str.substring((str.length + 1) / 2 - 1, (str.length + 1) / 2);
+  // use ternary notation
+  return str.length % 2 === 0
+    ? str.substring(str.length / 2 - 1, str.length / 2 + 1)
+    : str.substring((str.length + 1) / 2 - 1, (str.length + 1) / 2);
 }
 
 function reverseWord(word) {
@@ -37,19 +38,14 @@ function reverseWord(word) {
 }
 
 function reverseAllWords(words) {
-  for (let index = 0; index < words.length; ++index) {
-    words[index] = reverseWord(words[index]);
-  }
-  return words;
+  // replace for loop by ES6 arrow notation
+  return words.map((word) => reverseWord(word));
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  let numUsers = 0;
-  users.forEach((user) => {
-    if (user.type === "Linux") ++numUsers;
-  });
-  return numUsers;
+  // replace forEach loop by ES6 arrow notation
+  return users.filter((user) => user.type === "Linux").length;
 }
 
 function getMeanScore(scores) {
@@ -63,8 +59,8 @@ function simpleFizzBuzz(n) {
   let result = "";
   if (n % 3 === 0) result += "fizz";
   if (n % 5 === 0) result += "buzz";
-  if (result === "") return n;
-  return result;
+  // use ternary operator
+  return result === "" ? n : result;
 }
 
 module.exports = {

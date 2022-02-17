@@ -20,9 +20,10 @@ function countSheep(arr) {
 
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
+  // person is from Manchester if first character of postcode is M and subsequent character is numeric
   return (
     person.address.postCode.startsWith("M") &&
-    person.address.city === "Manchester"
+    (person.address.postCode.charAt(1).match(/[0-9]/) || []).length === 1
   );
 }
 

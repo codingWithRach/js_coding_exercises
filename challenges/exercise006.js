@@ -6,11 +6,9 @@
  */
 const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
-  let total = 0;
-  arr.forEach((item) => {
-    if (item % 3 === 0 || item % 5 === 0) total += item;
-  });
-  return total;
+  return arr
+    .filter((item) => item % 3 === 0 || item % 5 === 0)
+    .reduce((a, b) => a + b, 0);
 };
 
 /**
@@ -21,11 +19,9 @@ const sumMultiples = (arr) => {
  */
 const isValidDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
-  // use ... notation instead of split
-  for (let index = 0; index < [...str].length; index++) {
-    if (!"CGTA".includes([...str][index].toUpperCase())) return false;
-  }
-  return true; // no invalid characters found
+  return (
+    [...str].filter((char) => !"CGTA".includes(char.toUpperCase())).length === 0
+  );
 };
 
 /**
@@ -38,11 +34,7 @@ const getComplementaryDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
   if (!isValidDNA(str)) return "Invalid DNA";
   const compDNA = { T: "A", A: "T", C: "G", G: "C" };
-  // use ... notation instead of split
-  const result = [...str].map(function (item) {
-    return compDNA[item.toUpperCase()];
-  });
-  return result.join("");
+  return [...str].map((item) => compDNA[item.toUpperCase()]).join("");
 };
 
 /**
@@ -121,7 +113,6 @@ const areWeCovered = (staff, day) => {
   if (day === undefined) throw new Error("day is required");
   let numStaff = 0;
   staff.forEach(function (person) {
-    // finally worked out how to use map with ES6 arrow notation!
     const personRota = person.rota.map((item) => item.toLowerCase());
     if (personRota.includes(day.toLowerCase())) numStaff += 1;
   });

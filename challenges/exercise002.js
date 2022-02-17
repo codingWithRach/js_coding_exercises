@@ -23,7 +23,7 @@ function hasMPostCode(person) {
   // person is from Manchester if first character of postcode is M and subsequent character is numeric
   return (
     person.address.postCode.startsWith("M") &&
-    (person.address.postCode.charAt(1).match(/[0-9]/) || []).length === 1
+    !isNaN(parseInt(person.address.postCode.charAt(1)))
   );
 }
 

@@ -8,20 +8,13 @@ const sumDigits = (n) => {
   if (!Number.isInteger(n)) return NaN;
 
   // determine whether number is positive or negative
-  let multiplier = 1;
-  if (n < 0) multiplier = -1;
-
-  // convert number to positive and sum the digits
-  n = Math.abs(n);
-  let total = 0;
-  while (n > 0) {
-    const digit = n % 10;
-    total += digit;
-    n = (n - digit) / 10;
-  }
+  const multiplier = n < 0 ? -1 : 1;
 
   // return the total as a positive or negative number
-  return total * multiplier;
+  return (
+    [...Math.abs(n).toString()].reduce((a, b) => parseInt(a) + parseInt(b)) *
+    multiplier
+  );
 };
 
 /**
@@ -176,7 +169,7 @@ const findWinner = (board) => {
   const players = ["X", "0"];
   let winner = null;
   players.forEach((player) => {
-    // check rows in original and tranposed boards
+    // check rows in original and transposed boards
     boards.forEach((board) => {
       // check rows
       board.forEach((row) => {

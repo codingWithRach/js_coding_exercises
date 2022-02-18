@@ -16,14 +16,13 @@ const count1sand0s = (str) => {
 
 const reverseNumber = (n) => {
   if (n === undefined) throw new Error("n is required");
-  // replace split with spread operator
   return parseFloat([...n.toString()].reverse().join(""));
 };
 
 const sumArrays = (arrs) => {
   if (arrs === undefined) throw new Error("arrs is required");
   let result = 0;
-  arrs.forEach(function (item) {
+  arrs.forEach((item) => {
     result += item.reduce((a, b) => a + b, 0);
   });
   return result;

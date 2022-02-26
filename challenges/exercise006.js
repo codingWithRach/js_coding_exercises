@@ -72,14 +72,8 @@ const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
   if (!Number.isInteger(n)) return [];
-
-  function* fillArray(n, fill) {
-    for (let i = 0; i < n; i++) {
-      yield fill;
-    }
-  }
-  const row = Array.from(fillArray(n, fill));
-  return Array.from(fillArray(n, row));
+  if (n < 0) return [];
+  return new Array(n).fill(new Array(n).fill(fill));
 };
 
 /**

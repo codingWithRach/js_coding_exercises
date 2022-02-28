@@ -26,7 +26,6 @@ function getSalePrice(originalPrice, reduction) {
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  // use ternary notation
   return str.length % 2 === 0
     ? str.substring(str.length / 2 - 1, str.length / 2 + 1)
     : str.substring((str.length + 1) / 2 - 1, (str.length + 1) / 2);
@@ -38,13 +37,11 @@ function reverseWord(word) {
 }
 
 function reverseAllWords(words) {
-  // replace for loop by ES6 arrow notation
   return words.map((word) => reverseWord(word));
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // replace forEach loop by ES6 arrow notation
   return users.filter((user) => user.type === "Linux").length;
 }
 
@@ -59,7 +56,6 @@ function simpleFizzBuzz(n) {
   let result = "";
   if (n % 3 === 0) result += "fizz";
   if (n % 5 === 0) result += "buzz";
-  // use ternary operator
   return result === "" ? n : result;
 }
 

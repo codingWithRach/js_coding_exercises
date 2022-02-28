@@ -52,17 +52,14 @@ const findNeedle = (haystack, searchTerm) => {
 
 const getWordFrequencies = (str) => {
   if (str === undefined) throw new Error("str is required");
-  // split the string into an array of individual words and remove the punctuation
-  const words = str
+  const frequencies = {};
+  str
     .toLowerCase()
     .split(" ")
-    .map((word) => word.replace(/\W|_/g, ""));
-
-  // populate frequencies
-  const frequencies = {};
-  words.forEach((word) =>
-    frequencies[word] ? (frequencies[word] += 1) : (frequencies[word] = 1)
-  );
+    .map((word) => word.replace(/\W|_/g, "")) // remove punctuation
+    .forEach((word) =>
+      frequencies[word] ? (frequencies[word] += 1) : (frequencies[word] = 1)
+    );
   return frequencies;
 };
 

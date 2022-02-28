@@ -61,13 +61,9 @@ const getWordFrequencies = (str) => {
 
   // populate frequencies
   const frequencies = {};
-  words.forEach((word) => {
-    if (frequencies[word]) {
-      frequencies[word] += 1;
-    } else {
-      frequencies[word] = 1;
-    }
-  });
+  words.forEach((word) =>
+    frequencies[word] ? (frequencies[word] += 1) : (frequencies[word] = 1)
+  );
   return frequencies;
 };
 
